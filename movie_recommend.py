@@ -7,8 +7,8 @@ from email.message import EmailMessage
 class MovieRecommendation:
     def __init__(self, m_list):
         self.api_key = os.getenv("OMDB_API_KEY")
-        self.user_email = os.getenv("USER_EMAIL")
-        self.user_passw = os.getenv("USER_PASSW")
+        self.user_email = os.getenv("EMAIL_ADDRESS")
+        self.user_password = os.getenv("EMAIL_PASSWORD")
         self.movie_title = ""
         self.movie_list = m_list
         self.movie_parameters = {}
@@ -43,5 +43,5 @@ class MovieRecommendation:
 
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
             connection.starttls()
-            connection.login(self.user_email, self.user_passw)
+            connection.login(self.user_email, self.user_password)
             connection.send_message(msg)
